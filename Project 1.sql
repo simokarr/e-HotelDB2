@@ -421,6 +421,43 @@ VALUES
     ( False ,'28-03-1991'),
     ( True ,'21-05-2082'),
     ( False ,'16-05-1987');
+ 
+ /* Indexes: */
+/* This index can be used by customers (users) to efficiently find all rooms currently available */
+/* Also, employees can use this index to find all rooms currently booked/occupied. */
+create index room_status on rooms(status);
+
+/* This index is intended for efficiently locating the information of a specific customer. */
+/* Employees can use it to pull up the profile of a customer */
+create index customerID_index on customers(customer_ID);
+
+/* This index locates the information of a specific employee given the ID number. */
+/* Managers can use it to pull up the profile of an employee and check their roles and hotel assignments. */
+create index employeeID_index on employees(employee_ID);
+
+/* This index locates the information of all hotels in a given location or area. */
+/* This index is intended mostly for users so they can see all hotels in a required town/city, province, or street. */
+create index hotelarea_index on hotel(hotel_adrs);
+
+/* This index locates the information of all hotels of a given star category, allowing users to efficiently find all hotels of a desired rating.  */
+create index star_index on hotel(star_category);
+
+/* Views: */
+/* 1) Number of rooms available per area */
+create view rooms_avail as
+		select count (*)
+		from rooms
+		where status = ‘available’ 
+group by hotel_adrs in (select hotel_adrs
+			from hotel);     
+/* group by area could be more defined…*/
+			 
+/* 2) Capacity of all rooms in a specific hotel */
+create view capacity as
+		select room_cpsty
+		from rooms
+		group by hotel_ID; 
+
 
 
 
