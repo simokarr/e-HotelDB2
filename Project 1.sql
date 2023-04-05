@@ -350,12 +350,14 @@ VALUES
     (5, 40 , 4263 ,'TV, air condition, wifi, 24-hour front desk, Parking free', 1 ,'sea view', 'Handicap accessibility', 'Stained or damaged carpets', 'Available');
 
 
+drop table customers
+
 CREATE TABLE customers (
-    customer_ID SERIAL8,
+    customer_ID SERIAL PRIMARY KEY,
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     address VARCHAR(255),
-    sin INT PRIMARY KEY ,
+    sin INT,
     rgstr_date VARCHAR(20)
 );
 
@@ -372,12 +374,14 @@ VALUES
 ('Herbie', 'TISDELL', '3309 E Miraloma Ave, Ste 109', 9101986 ,'20-02-2059'),
 ('Aryan', 'FILHIOL', '4634 Waterwood Pass Dr', 29102072 ,'12-01-1994');
 
+
+
 CREATE TABLE employees (
-    employee_ID BIGSERIAL ,
+    employee_ID SERIAL PRIMARY KEY ,
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     address VARCHAR(255),
-    sin INT PRIMARY KEY,
+    sin INT,
     role VARCHAR(50)
 );
 
@@ -397,14 +401,26 @@ VALUES
 
 
 CREATE TABLE history (
-    customer_ID INT NOT NULL ,
-    employee_ID INT,
+    customer_ID SERIAL NOT NULL ,
+    employee_ID SERIAL,
     check_in BOOLEAN,
     rstart_date VARCHAR(10),
     FOREIGN KEY (customer_ID) references customers (customer_ID),
     FOREIGN KEY (employee_ID) references employees (employee_ID)
 );
 
+INSERT INTO history(check_in, rstart_date)
+VALUES
+    ( False ,'12-01-1984'),
+    ( False ,'15-01-2055'),
+    ( False ,'20-03-1935'),
+    ( False ,'29-11-2060'),
+    ( True ,'04-02-1966'),
+    ( True ,'31-03-1906'),
+    ( True ,'15-08-2065'),
+    ( False ,'28-03-1991'),
+    ( True ,'21-05-2082'),
+    ( False ,'16-05-1987');
 
 
 
