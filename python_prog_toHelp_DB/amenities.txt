@@ -1,0 +1,7 @@
+TV, air condition, fridge, wifi
+TV, air condition, wifi
+TV, air condition, wifi, Swimming pool, Parking free
+TV, air condition, wifi, Lounge, Non smoking rooms
+TV, air condition, fridge, wifi, Fitness center
+TV, air condition, wifi, 24-hour front desk, Parking free
+TV, air condition, wifi, Swimming pool, Pet friendly options
