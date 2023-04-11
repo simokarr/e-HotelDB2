@@ -403,6 +403,7 @@ VALUES
 CREATE TABLE history (
     customer_ID SERIAL NOT NULL ,
     employee_ID SERIAL,
+    room_num INT NOT NULL,
     check_in BOOLEAN,
     booking_date VARCHAR(10),
     rstart_date VARCHAR(10),
