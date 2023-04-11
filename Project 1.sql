@@ -350,7 +350,7 @@ VALUES
     (5, 40 , 4263 ,'TV, air condition, wifi, 24-hour front desk, Parking free', 1 ,'sea view', 'Handicap accessibility', 'Stained or damaged carpets', 'Available');
 
 
-drop table customers;
+DROP TABLE customers;
 
 CREATE TABLE customers (
     customer_ID SERIAL PRIMARY KEY NOT NULL,
