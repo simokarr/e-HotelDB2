@@ -1,7 +1,7 @@
 CREATE TABLE hotel_chain(
-    name VARCHAR(255) PRIMARY KEY,
-    address VARCHAR(255),
-    hotel_num INT,
+    name VARCHAR(255) PRIMARY KEY NOT NUll,
+    address VARCHAR(255) NOT NULL,
+    hotel_num INT NOT NULL,
     email_adrs VARCHAR (255),
     phone_num VARCHAR (20)
 );
@@ -18,12 +18,12 @@ VALUES
 
 
 CREATE TABLE hotel(
-    hotel_ID SERIAL PRIMARY KEY ,--auto generating ID
-    hotel_chain_name VARCHAR(255),
-    name VARCHAR(50),
-    star_category NUMERIC(1,0),
-    room_amnt INT,
-    hotel_adrs VARCHAR(255),
+    hotel_ID SERIAL PRIMARY KEY NOT NULL,--auto generating ID
+    hotel_chain_name VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    star_category NUMERIC(1,0) NOT NULL,
+    room_amnt INT NOT NULL,
+    hotel_adrs VARCHAR(255) NOT NULL,
     email VARCHAR(255),
     phone_num VARCHAR (20),
     manager VARCHAR(25) NOT NULL,
@@ -87,15 +87,15 @@ VALUES
 
 
 CREATE TABLE rooms(
-    room_num INT,
-    hotel_ID INT,
-    price NUMERIC(10,3),
+    room_num INT NOT NULL,
+    hotel_ID INT NOT NULL,
+    price NUMERIC(10,3) NOT NULL,
     amenities VARCHAR(255),
-    room_cpsty INT,
+    room_cpsty INT NOT NULL,
     view_type VARCHAR (255),
-    ext_poss VARCHAR(255),
+    ext_poss VARCHAR(255) NOT NULL,
     damages VARCHAR (255),
-    status VARCHAR(20),
+    status VARCHAR(20) NOT NULL,
     FOREIGN KEY (hotel_ID) references hotel (hotel_ID)
 );
 
@@ -353,12 +353,12 @@ VALUES
 drop table customers
 
 CREATE TABLE customers (
-    customer_ID SERIAL PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
+    customer_ID SERIAL PRIMARY KEY NOT NULL,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
     address VARCHAR(255),
-    sin INT,
-    rgstr_date VARCHAR(20)
+    sin INT NOT NULL,
+    rgstr_date VARCHAR(20) NOT NULL
 );
 
 INSERT INTO customers(first_name, last_name, address, sin, rgstr_date)
@@ -377,12 +377,12 @@ VALUES
 
 
 CREATE TABLE employees (
-    employee_ID SERIAL PRIMARY KEY ,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
+    employee_ID SERIAL PRIMARY KEY NOT NULL,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
     address VARCHAR(255),
-    sin INT,
-    role VARCHAR(50)
+    sin INT NOT NULL,
+    role VARCHAR(50) NOT NULL
 );
 
 
@@ -404,9 +404,11 @@ CREATE TABLE history (
     customer_ID SERIAL NOT NULL ,
     employee_ID SERIAL,
     check_in BOOLEAN,
+    booking_date VARCHAR(10),
     rstart_date VARCHAR(10),
     FOREIGN KEY (customer_ID) references customers (customer_ID),
-    FOREIGN KEY (employee_ID) references employees (employee_ID)
+    FOREIGN KEY (employee_ID) references employees (employee_ID),
+    FOREIGN KEY (room_num) references rooms (room_num)
 );
 
 INSERT INTO history(check_in, rstart_date)
