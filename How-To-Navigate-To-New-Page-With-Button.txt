@@ -1,0 +1,42 @@
+USING A BUTTON TO NAVIGATE FROM ONE PAGE TO ANOTHER
+
+Approach 1: Using React Router
+
+// Step 1: set up a route in the project, containing at the very least the information for path and component.
+
+import YourComponent from "./path/of/your/component";
+
+<Route path="insert/your/path/here" component={YourComponent} />
+
+// Step 2: update button function to use Link from react-router-dom (may have to install package)
+
+//put it all together
+// wherever your router is with your routes
+    
+import YourComponent from "./path/of/your/component";
+
+<Router>
+   <Route exact path="/insert/your/path/here" component={YourComponent} />
+</Router>
+
+// The component that has the button function
+
+import { Link } from "react-router-dom"; 
+
+class App extends Component {
+  render() {
+     return(
+       <div>
+         <Link to="/insert/your/path/here" className="btn btn-primary">hello</Link>
+      </div>
+     );
+  }
+}
+
+Approach 2: Using window.open (appears more straightforward)
+
+// write code into button function (is it called handleClick?)
+
+handleClick(){ // the button
+  window.open("/insert/your/path/here");
+} // this opens into a new tab - doesn't transfer current page to new tab
